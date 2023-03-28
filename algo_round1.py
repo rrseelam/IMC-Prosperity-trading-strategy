@@ -69,7 +69,7 @@ class Trader:
             # These possibly contain buy or sell orders for PEARLS
             # Depending on the logic above
             # Check if the current product is the 'PEARLS' product, only then run the order logic
-            if product == 'BANANAS':
+            if product == 'BANANAS':  # and len(state.market_trades['BANANAS']) >= 5:
 
                 # Retrieve the Order Depth containing all the market BUY and SELL orders for PEARLS
                 order_depth: OrderDepth = state.order_depths[product]
@@ -80,7 +80,13 @@ class Trader:
                 # Define a fair value for the PEARLS.
                 # Note that this value of 1 is just a dummy value, you should likely change it!
 
-                acceptable_price = (state.timestamp / 1_000_000 * -1 * 38) + 4870 # estimate
+               
+                # for i in range(5):
+                #     start = 0
+                #     start += state.market_trades['BANANAS'][i].price
+                #     start /= 5.0
+
+                acceptable_price = (state.timestamp / 1_000_000 * -1 * 22) + 4870 - 22 # estimate
 
                 acceptable_buy  =  acceptable_price - 2
                 acceptable_sell = acceptable_price + 2
